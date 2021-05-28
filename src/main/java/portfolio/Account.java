@@ -1,12 +1,10 @@
 package portfolio;
 
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode
-@ToString
 abstract class Account {
 
     private final String name;

@@ -1,6 +1,6 @@
 package portfolio;
 
-public enum Currency {
+enum Currency {
 
     PLN, USD, GBP, EUR
 
