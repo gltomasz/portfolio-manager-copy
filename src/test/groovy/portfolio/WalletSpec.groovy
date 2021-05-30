@@ -14,4 +14,25 @@ class WalletSpec extends Specification {
             null | _
             ""   | _
     }
+
+    def 'add an account'() {
+        given:
+            Wallet wallet = TestFixtures.createWallet()
+            Account account = new LocalAccount("test", Currency.PLN)
+        when:
+            wallet.addAccount(account)
+        then:
+            wallet.accounts() == [account]
+    }
+
+    def 'remove an account'() {
+        given:
+            Wallet wallet = TestFixtures.createWallet()
+            Account account = new LocalAccount("test", Currency.PLN)
+            wallet.addAccount(account)
+        when:
+            wallet.removeAccount(account)
+        then:
+            wallet.accounts().isEmpty()
+    }
 }

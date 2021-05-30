@@ -19,9 +19,9 @@ class InMemoryWalletRepository implements WalletRepository {
 
     @Override
     public Wallet add(Wallet wallet) {
-        boolean walletAlreadyExist = database.values().stream().anyMatch(w -> w.getName().equals(wallet.getName()));
+        boolean walletAlreadyExist = database.values().stream().anyMatch(w -> w.name().equals(wallet.name()));
         if (walletAlreadyExist) {
-            throw new DuplicateWalletNameException(wallet.getName());
+            throw new DuplicateWalletNameException(wallet.name());
         }
         return database.put(++id, wallet);
     }

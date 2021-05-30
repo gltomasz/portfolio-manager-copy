@@ -1,17 +1,21 @@
 package portfolio;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @EqualsAndHashCode
-@Getter
 class Wallet {
 
     private final String name;
+    private final List<Account> accounts;
 
-    public Wallet(String name) {
+    Wallet(String name) {
         validateName(name);
         this.name = name;
+        this.accounts = new ArrayList<>();
     }
 
     private void validateName(String name) {
@@ -20,4 +24,19 @@ class Wallet {
         }
     }
 
+    public String name() {
+        return name;
+    }
+
+    public List<Account> accounts() {
+        return Collections.unmodifiableList(accounts);
+    }
+
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
+
+    public void removeAccount(Account account) {
+        accounts.remove(account);
+    }
 }

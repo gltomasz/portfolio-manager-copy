@@ -26,6 +26,14 @@ abstract class Account {
     }
 
     public void withdraw(double amount) {
-        balance = balance.subtract(BigDecimal.valueOf(amount));
+        BigDecimal balanceAfterSubtract = balance.subtract(BigDecimal.valueOf(amount));
+        balanceShouldNoBeNegative(balanceAfterSubtract);
+        balance = balanceAfterSubtract;
+    }
+
+    private void balanceShouldNoBeNegative(BigDecimal subtract) {
+        if (subtract.doubleValue() < 0) {
+            throw new NegativeBalanceException();
+        }
     }
 }

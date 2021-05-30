@@ -23,6 +23,15 @@ class AccountSpec extends Specification {
             anAccount.balance() == 50.50d
     }
 
+    def 'account balance cannot be negative'() {
+        given:
+            Account anAccount = aLocalAccount(100.00)
+        when:
+            anAccount.withdraw(150.00)
+        then:
+            thrown(NegativeBalanceException)
+    }
+
     private static LocalAccount aLocalAccount(balance = 0.0d) {
         def account = new LocalAccount("PLN account", Currency.PLN)
         account.add(balance)
